@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <p>тут должен быть список песен</p>
+    <RenderItems :tracks="tracksTop" />
+    {{ this.$store.state.array }}
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import RenderItems from "../components/RenderItems";
 
 export default {
-  name: 'Home',
+  name: "Home",
+  computed: {
+    tracksTop() {
+      return this.$store.getters.getTopTracks;
+    },
+  },
   components: {
-    HelloWorld
-  }
-}
+    RenderItems,
+  },
+  methods: {},
+};
 </script>
