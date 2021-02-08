@@ -7,11 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     topTracks: [],
-    array: [1, 2, 3],
     artistInfo: [],
     artistName: "",
     artistTags: [],
-    artistImage: ""
+    artistImage: "",
+    searchResults: [],
+    searchValue: ""
   },
   getters: {
     getTopTracks(state) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     getArtistImage(state) {
       return state.artistImage
+    },
+    getSearchResults(state) {
+      return state.searchResults
     }
   },
   mutations: {
@@ -35,12 +39,17 @@ export default new Vuex.Store({
       state.artistInfo = artist.artist.bio.summary;
       state.artistTags = artist.artist.tags.tag;
       state.artistImage = artist.artist.image[2]['#text'];
-    }
+    },
+    SET_RESULTS(state, results) {
+      state.searchResults = results.results.trackmatches.track;
+
+    },
+
   },
   actions: {
     async loadTop() {
 
-      let loadTop = await fetch("http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&limit=30&tag=disco&api_key=30a7826d6145cd51910f5ff14c6cabff&format=json")
+      let loadTop = await fetch("http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&limit=10&tag=disco&api_key=30a7826d6145cd51910f5ff14c6cabff&format=json")
         .then((response) => { return response.json() })
         .then((data) => { return data })
 
@@ -57,7 +66,18 @@ export default new Vuex.Store({
       this.commit('SET_ARTIST', loadArtist)
 
 
-    }
+    },
+    async loadResults() {
+      let searchValue = this.state.searchValue;
+      let loadResults = await fetch(`http://ws.audioscrobbler.com/2.0/?method=track.search&limit=10&track=${searchValue}&api_key=30a7826d6145cd51910f5ff14c6cabff&format=json`)
+        .then((response) => { return response.json() })
+        .then((data) => { return data })
+
+      this.commit('SET_RESULTS', loadResults)
+
+
+    },
+
   },
   modules: {
   }

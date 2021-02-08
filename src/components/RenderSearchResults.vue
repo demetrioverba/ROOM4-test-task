@@ -1,8 +1,8 @@
 <template>
   <ul>
-    <RenderItem
-      v-for="(track, i) of tracks"
-      v-bind:trackItem="track"
+    <RenderSearchResult
+      v-for="(result, i) of results"
+      v-bind:resultItem="result"
       v-bind:index="i"
       v-bind:key="i"
     />
@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import RenderItem from "../components/RenderItem";
+import RenderSearchResult from "./RenderSearchResult";
 
 export default {
   props: {
-    tracks: {},
+    results: {},
   },
   components: {
-    RenderItem,
+    RenderSearchResult,
   },
 };
 </script>
@@ -25,7 +25,6 @@ export default {
 <style scoped>
 ul {
   list-style: none;
-
   padding: 0px;
 }
 </style>

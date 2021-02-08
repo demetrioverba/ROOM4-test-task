@@ -2,10 +2,7 @@
   <li class="itemContainer">
     <div id="infoContainer" class="infoContainer">
       <div class="imgContainer">
-        <img
-          style="width: 100%; height: 100%"
-          :src="trackItem.image[2]['#text']"
-        />
+        <img :src="trackItem.image[2]['#text']" />
       </div>
       <div class="info">
         <router-link
@@ -30,11 +27,6 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     infoKeyLocal: "",
-  //   };
-  // },
   props: {
     trackItem: {},
     index: {},
@@ -61,7 +53,7 @@ export default {
 .artistLink {
   position: absolute;
   bottom: 2px;
-  color: #eef3d2;
+  color: #eaeaea;
 }
 .routerLink {
   text-decoration: none;
@@ -73,7 +65,9 @@ export default {
   flex-direction: row;
   width: 90%;
   height: 100%;
+  margin: 0px auto;
   background-color: #9c9fa0;
+  box-shadow: 4px 4px 10px 0.2px grey;
 }
 .song {
   font-size: 50px;
@@ -81,10 +75,17 @@ export default {
   font-weight: normal;
   margin: 0px;
   margin-bottom: 10px;
+  color: #eaeaea;
 }
 .artist {
   margin: 0px;
   text-transform: uppercase;
   font-weight: normal;
+  color: #eaeaea;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
