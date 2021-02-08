@@ -3,7 +3,7 @@
     <div id="nav">
       <!-- <router-link to="/">TOP tracks</router-link> | -->
       <!-- <router-link to="/singer">Singer page</router-link> -->
-      <router-link to="/searchSong">Searc song</router-link>
+      <!-- <router-link to="/searchSong">Search song</router-link> -->
     </div>
     <router-view />
   </div>
@@ -12,10 +12,17 @@
 export default {
   created() {
     this.$store.dispatch("loadTop");
+    //this.$store.dispatch("loadArtist");
   },
 };
 </script>
 <style>
+#app {
+  width: 100%;
+  background-image: linear-gradient(to top left, #fc8884, #eef3d2);
+  border-radius: 10px;
+  padding: 10px;
+}
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

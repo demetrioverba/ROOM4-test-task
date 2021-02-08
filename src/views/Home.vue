@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <p>тут должен быть список песен</p>
+    <router-link to="/searchSong">Search song</router-link>
+    <h2>Top Tracks Last.fm</h2>
     <RenderItems :tracks="tracksTop" />
-    {{ this.$store.state.array }}
   </div>
 </template>
 
